@@ -16,6 +16,7 @@ void led_init() {
 void blinkLEDS() {
   int i = 0;
   while(i < 5) {
+    //alternate leds
     P1OUT = LED_RED;
     __delay_cycles(1000000);
     P1OUT = LED_GREEN;

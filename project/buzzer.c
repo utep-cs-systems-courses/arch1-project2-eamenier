@@ -31,9 +31,11 @@ void buzzer_set_period(short cycles) {
 
 void marioTheme(){
   timerAUpmode();
+  //turn buzzers off and on
   P2SEL2 &= ~(BIT6 | BIT7);
   P2DIR = BIT6;
   P2SEL |= BIT6;
+  //song notes
   int super_mario[] =
     {E7, E7, 0, E7, 0, C7, E7, 0, G7, 0, 0, 0, G6, 0, 0, 0, C7, 0, 0, G6, 0, 0, E6, 0, 0, A6, 0,
      B6, 0, AS6, A6, 0, G6, E7, G7, A7, 0, F7, G7, 0, E7, 0, C7, D7, B6, 0, 0, C7, 0, 0, G6, 0, 0,
@@ -43,7 +45,9 @@ void marioTheme(){
     keys = super_mario[i];
     buzzer_set_period(keys);
     __delay_cycles(2500000);
+    //turn buzzer off
     P2SEL &= ~BIT7;
   }
+  //turn buzzer off
   P2DIR &= ~BIT6;
 }
