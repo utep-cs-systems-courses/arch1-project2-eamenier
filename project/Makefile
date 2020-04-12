@@ -8,7 +8,7 @@ AS		= msp430-elf-as
 
 all: buzzBlink.elf
 
-buzzBlink.elf:${COMMON_OBJECTS} main.o p1_interrupt_handler.o switches.o led.o buzzer.o ../project/lib/libTimer.a
+buzzBlink.elf:${COMMON_OBJECTS} main.o switch_state_machine_assembly.o p1_interrupt_handler.o switches.o switch_state_machine.o led.o buzzer.o ../project/lib/libTimer.a
 	${CC} $(CFLAGS) $(LDFLAGS) -o $@ $^
 
 load: buzzBlink.elf
@@ -18,8 +18,9 @@ clean:
 	rm -f *.o *.elf
 
 main.c: buzzer.h led.h switches.h
-switches.c: switches.h
+switches.c: switches.h switch_state_machine.h
 led.c: led.h
 buzzer.c: buzzer.h
 p1_interrupt_handler.c: switches.h
 wdInterruptHandler.c: buzzer.h led.h
+switch_state_machine_assembly.s: led.h switches.h buzzer.h
