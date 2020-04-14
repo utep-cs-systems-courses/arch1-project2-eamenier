@@ -14,15 +14,15 @@ jt:
 	.text
 	.global switch_state_machine_assembly
 switch_state_machine_assembly:
-	cmp #6, r12
-	jnc default
+	cmp #5, r12
+	jc default
 	add r12, r12
 	mov jt(r12), r0
 
 case01:
 	mov.b #1, &switch_state_changed
-	call #marioTheme
 	call #blinkLEDS
+	call #marioTheme
 	jmp end
 	
 case02:
@@ -37,8 +37,8 @@ case03:
 
 case04:
 	mov.b #1, &switch_state_changed
-	call #marioTheme
 	call #blinkLEDS
+	call #marioTheme
 	jmp end
 
 default:
